@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for循环闭包传参问题，addEvnetListener，闭包</title>
+	<style type="text/css">
+		li{
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+<ul id="list">
+<li>1</li>
+<li>2</li>
+<li>3</li>
+</ul>
+<script type="text/javascript">
+        var ul=document.getElementById('list');
+		var lis=ul.children;
+		var l=lis.length;
+		alert(l);
+		
+		//方法一
+		// for (var i = 0; i < l; i++) {
+		// 		(function (x) {
+		// 			 lis[x].addEventListener('click', function () {
+		// 		 	 alert(x);
+		// 		 	 this.style.backgroundColor='red';
+		// 		 }); 
+		// 		})(i);	
+		// }
+
+		//方法二
+		for (var i = 0; i < l; i++) {
+				
+			lis[i].addEventListener('click', (function (x) {
+				 	 return function(){
+				 	 alert(x);
+				 	 this.style.backgroundColor='red';
+				 	}
+				 })(i)); 			
+		}
+
+	</script>
+</body>
+</html>
