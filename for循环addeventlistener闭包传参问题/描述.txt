@@ -1,0 +1,1 @@
+关于js中for循环传参问题。闭包，addeventlistener

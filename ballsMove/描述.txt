@@ -1,0 +1,2 @@
+使用js回调函数结合setTimeout，实现的小球动画
+待用promise实现
