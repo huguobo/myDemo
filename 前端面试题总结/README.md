@@ -359,9 +359,62 @@ nomalize.css
   * 你会使用哪些技术和处理方法？
 * 有哪些的隐藏内容的方法 (如果同时还要保证屏幕阅读器可用呢)？
 * 你用过栅格系统 (grid system) 吗？如果使用过，你最喜欢哪种？
+```
+bootstrap
+```
 * 你用过媒体查询，或针对移动端的布局/CSS 吗？
+```
+@media
+```
 * 你熟悉 SVG 样式的书写吗？
+
+```
+SVG 意为可缩放矢量图形（Scalable Vector Graphics）。
+
+什么是SVG？
+
+•SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
+
+•SVG 用来定义用于网络的基于矢量的图形
+
+•SVG 使用 XML 格式定义图形
+
+•SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失
+
+•SVG 是万维网联盟的标准
+
+•SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体
+
+书写示例如下：
+
+1  <?xml version="1.0" standalone="no"?>
+2     <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+3     <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+4         <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
+5     </svg>
+
+```
+
 * 如何优化网页的打印样式？
+
+```
+<link rel = "stylesheet" type = "text/css" media = "screen" href = "xxx.css"/>
+
+其中media指定的属性就是设备，显示器上就是screen，打印机则是print，电视是tv，投影仪是projection。打印样式示例如下：
+
+<link rel = "stylesheet" type = "text/css" media = "print" href = "yyy.css"/>
+
+但打印样式表也应注意以下事项：
+
+•打印样式表中最好不要用背景图片，因为打印机不能打印CSS中的背景。如要显示图片，请使用html插入到页面中。
+
+•最好不要使用像素作为单位，因为打印样式表要打印出来的会是实物，所以建议使用pt和cm。
+
+•隐藏掉不必要的内容。（@print div{display:none;}）
+
+•打印样式表中最好少用浮动属性，因为它们会消失。如果想要知道打印样式表的效果如何，直接在浏览器上选择打印预览就可以了。
+
+```
 * 在书写高效 CSS 时会有哪些问题需要考虑？
 * 使用 CSS 预处理器的优缺点有哪些？
   * 请描述你曾经使用过的 CSS 预处理器的优缺点。
