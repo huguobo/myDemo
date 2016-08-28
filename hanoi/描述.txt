@@ -1,0 +1,12 @@
+汉诺塔
+src: 起始
+aux：辅助
+dst: 目标
+disc：圆盘数量
+
+理解递归三阶段：
+disc=1终止条件，直接src=>dst
+disc>1
+1.把最后一个圆盘上的disc-1个圆盘通过dst移到aux上
+2.把disc从src移到dst
+3.再把之前移动到axu的disc-1个托盘经过src移到dst上即可
