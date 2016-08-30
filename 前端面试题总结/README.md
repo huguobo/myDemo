@@ -493,7 +493,25 @@ Rule数量远远小于元素数量的假设和索引的运用，遍历每一条C
 ```
 
 * 请描述伪元素 (pseudo-elements) 及其用途。
+
+```
+```
 * 请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。
+
+```
+说到IE的bug，在IE6以前的版本中，IE对盒模型的解析出现一些问题，跟其它浏览器不同，将border与padding都包含在width之内。而另外一些浏览器则与它相反，是不包括border和padding的。
+
+在我们开发的过程中会发现，有时候，如果对页面中的大区域进行设置时，将border、padding计算到width和height之内，反而更灵活。但W3C的CSS2.1规范却规定了他们并不能被包含其中。考虑到这个问题，css3中引入了一个新的属性：box-sizing，它具有“content-box”和”border-box“两个值。
+
+`box-sizing:content-box`
+
+当我们设置box-sizing:content-box;时，浏览器对盒模型的解释遵从我们之前认识到的W3C标准，当它定义width和height时，它的宽度不包括border和padding。
+
+`box-sizing:border-box`
+
+当我们设置box-sizing:border-box;时，浏览器对盒模型的解释与IE6之前的版本相同，当它定义width和height时，border和padding则是被包含在宽高之内的。内容的宽和高可以通过定义的“width”和“height”减去相应方向的“padding”和“border”的宽度得到。内容的宽和高必须保证不能为负，必要时将自动增大该元素border box的尺寸以使其内容的宽或高最小为0。
+
+```
 * 请解释 ```* { box-sizing: border-box; }``` 的作用, 并且说明使用它有什么好处？
 * 请罗列出你所知道的 display 属性的全部值
 * 请解释 inline 和 inline-block 的区别？
