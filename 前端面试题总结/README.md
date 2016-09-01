@@ -499,6 +499,110 @@ Rule数量远远小于元素数量的假设和索引的运用，遍历每一条C
 * 请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。
 
 ```
+盒子模型分为两类：W3C标准盒子模型和IE盒子模型 （微软确实不喜欢服从他家的标准）
+
+这两者的关键差别就在于：
+
+- W3C盒子模型——属性高（height）和属性宽（width）这两个值不包含 填充（padding）和边框（border）
+
+- IE盒子模型——属性高（height）和属性宽（width）这两个值包含 填充（padding）和边框（border）
+
+我们在编写页面代码的时候应该尽量使用标准的W3C盒子模型（需要在页面中声明DOCTYPE类型）。
+   
+各浏览器盒模型的组成结构是一致的，区别只是在"怪异模式"下宽度和高度的计算方式，而“标准模式”下则没有区别。组成结
+
+构以宽度为例：总宽度=marginLeft+borderLeft+paddingLeft+contentWidth+paddingRight+borderRight+marginRight（W3C标
+
+准盒子模型）。页面在“怪异模式”下，css中为元素的width和height设置的值在标准浏览器和ie系列(ie9除外)
+
+里的代表的含义是不同的（IE盒子模型）。 
+
+
+因而解决兼容型为题最简洁和值得推荐的方式是：下述的第一条。 
+
+一、将页面设为“标准模式”。 
+
+添加对应的dtd标识，如： 
+Html代码 
+
+<!DOCTYPE html>  
+
+<!DOCTYPE html>  
+<html>  
+<head>  
+<style>  
+#box {width:100px;padding:0 10px;border:20px solid blue;margin:70px;}  
+</style>  
+<script type="text/javascript" src="../js/jquery-1.6.4.js"></script>  
+</head>  
+<body>  
+<div id="box">  
+</div>  
+<script>  
+var box = $('#box');  
+var boxboxWidth=box[0].offsetWidth;//包括补白、边框和内容宽度  
+alert(boxWidth+":"+box.width());//专指内容的宽度  
+</script>  
+</body>  
+</html>  
+
+
+注意：offsetWidth=borderLeft+paddingLeft+contentWidth+paddingRight+borderRight。 
+
+此时alert的值是160:100。即，各浏览器均认为css中的width就是100px即内容的宽度,和padding+border最终相加结果是：160
+
+px。 
+
+如果把doctype去掉，即进入“怪异模式”，此时，ie6/7/8的值均为100:40，证明它们认为css中width指的和offsetWidth是同一
+
+个值，除了内容的宽度外还都包含补白和边框，而内容的宽度则被压缩为40。而ie9,ff,chrome,opera这样的标准浏览器则依然是160:100。 
+
+二、使用hack或者在外面套上一层wrapper。 
+
+前提是页面处于“怪异模式”，“标准模式”不存在兼容性问题。 
+
+1、hack 
+   
+依然使用上例：假设内容的宽度必须固定为100px。 
+
+Html代码  
+
+#box {  
+width:100px !important; // ie9,ff,chrome,opera这样的标准浏览器
+width:160px; //所有的浏览器；它的本意是只对不认识!important的设置。可是ie7、ie8也认识
++width:160px!important;//ie7
+width:160px/0!important;//ie8
+padding:0 10px;border:20px solid blue;margin:70px;  
+}  
+
+//不太正确
+
+
+2、wrapper 
+
+Html代码
+
+#box {  
+width:100px;  
+margin:70px;  
+float:left;  
+}  
+.wrapper {  
+padding:0 10px;border:20px solid blue;  
+}  
+
+Html代码
+
+<div class="wrapper">  
+<div id="box"></div>  
+<div style="clear:both"></div>  
+</div>  
+
+
+```
+* 请解释 ```* { box-sizing: border-box; }``` 的作用, 并且说明使用它有什么好处？
+
+```
 说到IE的bug，在IE6以前的版本中，IE对盒模型的解析出现一些问题，跟其它浏览器不同，将border与padding都包含在width之内。而另外一些浏览器则与它相反，是不包括border和padding的。
 
 在我们开发的过程中会发现，有时候，如果对页面中的大区域进行设置时，将border、padding计算到width和height之内，反而更灵活。但W3C的CSS2.1规范却规定了他们并不能被包含其中。考虑到这个问题，css3中引入了一个新的属性：box-sizing，它具有“content-box”和”border-box“两个值。
@@ -512,8 +616,10 @@ Rule数量远远小于元素数量的假设和索引的运用，遍历每一条C
 当我们设置box-sizing:border-box;时，浏览器对盒模型的解释与IE6之前的版本相同，当它定义width和height时，border和padding则是被包含在宽高之内的。内容的宽和高可以通过定义的“width”和“height”减去相应方向的“padding”和“border”的宽度得到。内容的宽和高必须保证不能为负，必要时将自动增大该元素border box的尺寸以使其内容的宽或高最小为0。
 
 ```
-* 请解释 ```* { box-sizing: border-box; }``` 的作用, 并且说明使用它有什么好处？
 * 请罗列出你所知道的 display 属性的全部值
+
+![](http://images2015.cnblogs.com/blog/716683/201510/716683-20151013142822460-1264753317.jpg)
+
 * 请解释 inline 和 inline-block 的区别？
 * 请解释 relative、fixed、absolute 和 static 元素的区别
 * CSS 中字母 'C' 的意思是叠层 (Cascading)。请问在确定样式的过程中优先级是如何决定的 (请举例)？如何有效使用此系统？
