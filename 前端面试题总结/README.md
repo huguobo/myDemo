@@ -632,6 +632,21 @@ Html代码
 #### <a name='js-questions'>JS 相关问题：</a>
 
 * 请解释事件代理 (event delegation)。
+```
+JavaScript事件代理则是一种简单的技巧，通过它你可以把事件处理器添加到一个父级元素上，这样就避免了把事件处理器添
+
+加到多个子级元素上。当我们需要对很多元素添加事件的时候，可以通过将事件添加到它们的父节点而将事件委托给父节点来
+
+触发处理函数。这主要得益于浏览器的事件冒泡机制。事件代理用到了两个在JavaSciprt事件中常被忽略的特性：事件冒泡以
+
+及目标元素。
+
+ function getEventTarget(e) {
+    e=e||window.event;
+     return e.target||e.srcElement;
+ }
+
+```
 * 请解释 JavaScript 中 `this` 是如何工作的。
 * 请解释原型继承 (prototypal inheritance) 的原理。
 * 你怎么看 AMD vs. CommonJS？
