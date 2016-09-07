@@ -674,6 +674,17 @@ this永远指向函数运行时所在的对象，而不是函数被创建时所�
 ![](http://images.cnitblog.com/blog2015/716683/201504/171011349018292.jpg)
 
 * 你怎么看 AMD vs. CommonJS？
+```
+commonJs的定义模块分为：require(模块引用)，exports(模块定义) 模块标志（modules）
+node的包管理器npm及时遵循commonjs规范的，适用于服务端
+
+AMD ：为了前端定制的模块规范，commomjs不适合前端，因为前端的瓶颈是贷款，代码需要向一个服务器请求处理，所以对并发型要求较高，儿commonjs的require是同步的。
+
+amd孤帆就是为了前端定义的规范，它只有一个借口define(id?,dependenceies?,factory)，它利用回调机制异步处理，能够适应前端的要求。
+
+requireJs就是实现了AMD规范。
+
+```
 * 请解释为什么接下来这段代码不是 IIFE (立即调用的函数表达式)：`function foo(){ }();`.
   * 要做哪些改动使它变成 IIFE?
 * 描述以下变量的区别：`null`，`undefined` 或 `undeclared`？
