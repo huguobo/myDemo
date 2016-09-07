@@ -648,7 +648,31 @@ JavaScript事件代理则是一种简单的技巧，通过它你可以把事件�
 
 ```
 * 请解释 JavaScript 中 `this` 是如何工作的。
+```
+this永远指向函数运行时所在的对象，而不是函数被创建时所在的对象。匿名函数或不处于任何对象中的函数指向window 。
+
+1.如果是call，apply,with，指定的this是谁，就是谁。
+
+2.普通的函数调用，函数被谁调用，this就是谁。
+
+```
 * 请解释原型继承 (prototypal inheritance) 的原理。
+
+```
+1 function getProperty(obj,prop) {
+2     if (obj.hasOwnProperty(prop)) {
+3         return obj[prop];
+4     } else if (obj.__proto__!==null) {
+5         return getProperty(obj.__proto__,prop);
+6     } else {
+7         return undefined;
+8     }
+9 }
+
+下图展示的原（prototype）的关联：
+```
+![](http://images.cnitblog.com/blog2015/716683/201504/171011349018292.jpg)
+
 * 你怎么看 AMD vs. CommonJS？
 * 请解释为什么接下来这段代码不是 IIFE (立即调用的函数表达式)：`function foo(){ }();`.
   * 要做哪些改动使它变成 IIFE?
