@@ -42,5 +42,47 @@ function binarySearchTree(){
     	 }
 
     }
+    
+    //树的遍历
+    
+   
+    //中序遍历
+    this.inOrderTraverse=function (callback) {
+    	 inOrderTraverseNode(root,callback);
+    }
   
+   var inOrderTraverseNode=function (node,callback) {
+   	 if(node!==null){
+        inOrderTraverseNode(node.left,callback);
+   	 	callback(node.value);
+   	 	inOrderTraverseNode(node.right,callback);
+   	 }
+   }
+
+   
+   //先序遍历
+   this.preOrderTraverse=function (callback) {
+   	    preOrderTraverseNode(root,callback);
+   }
+   var  preOrderTraverseNode=function (node,callback) {
+   	  if(node!==null){
+        callback(node.value);
+        preOrderTraverseNode(node.left,callback);
+   	 	preOrderTraverseNodee(node.right,callback);
+   	 }
+   }
+
+   //后序遍历
+   this.postOrderTraverse=function (callback) {
+   	   postOrderTraverseNode(root,callback);
+   }
+    var  postOrderTraverseNode=function (node,callback) {
+   	  if(node!==null){
+        postOrderTraverseNode(node.left,callback);
+   	 	postOrderTraverseNode(node.right,callback);
+        callback(node.value);
+   	 }
+   }
+
+
 }
