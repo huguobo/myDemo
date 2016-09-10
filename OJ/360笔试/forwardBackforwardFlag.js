@@ -1,3 +1,5 @@
+//forwardBackforwardFlag.js
+
 // var line;
 // var data=[];
 
@@ -8,7 +10,6 @@
 var data=["abcda","ab","c"];
 var c=data.length;
 var n=0;
-
 while(n<c){
     
     var path=data[n]+'';
@@ -28,7 +29,7 @@ while(n<c){
     		ff=1;
     	}
     }
-    var bpath=path.split('').reverse().join("")+'';
+    var bpath=path.split('').reverse().join("");
     console.log("bpath:"+bpath);
     var match2=bpath.indexOf(f);
     console.log("match2:"+match2);
