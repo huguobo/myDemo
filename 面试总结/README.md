@@ -680,13 +680,24 @@ node的包管理器npm及时遵循commonjs规范的，适用于服务端
 
 AMD ：为了前端定制的模块规范，commomjs不适合前端，因为前端的瓶颈是贷款，代码需要向一个服务器请求处理，所以对并发型要求较高，儿commonjs的require是同步的。
 
-amd孤帆就是为了前端定义的规范，它只有一个借口define(id?,dependenceies?,factory)，它利用回调机制异步处理，能够适应前端的要求。
+AMD规范就是为了前端定义的规范，它只有一个借口define(id?,dependenceies?,factory)，它利用回调机制异步处理，能够适应前端的要求。
 
 requireJs就是实现了AMD规范。
 
 ```
 * 请解释为什么接下来这段代码不是 IIFE (立即调用的函数表达式)：`function foo(){ }();`.
   * 要做哪些改动使它变成 IIFE?
+```
+因为在解析器解析全局的function或者function内部function关键字的时候，默认是认为function声明，而不是function表达
+
+式，如果你不显示告诉编译器，它默认会声明成一个缺少名字的function，并且抛出一个语法错误信息，因为function声明需
+
+要一个名字。
+
+
+(function foo(){ })()
+```
+
 * 描述以下变量的区别：`null`，`undefined` 或 `undeclared`？
   * 该如何检测它们？
 * 什么是闭包 (closure)，如何使用它，为什么要使用它？
