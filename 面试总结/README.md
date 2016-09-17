@@ -699,7 +699,100 @@ requireJs就是实现了AMD规范。
 ```
 
 * 描述以下变量的区别：`null`，`undefined` 或 `undeclared`？
+
+  ```
+JavaScript的最初版本是这样区分的：null是一个表示"无"的对象，转为数值时为0；undefined是一个表示"无"的原始值，转为数值时为NaN。
+
+但是，上面这样的区分，在实践中很快就被证明不可行。目前，null和undefined基本是同义的，只有一些细微的差别。
+
+null表示"没有对象"，即该处不应该有值。典型用法是：
+
+•用来初始化一个变量，这个变量可能被赋值为一个对象。
+
+•用来和一个已经初始化的变量比较，这个变量可以是也可以不是一个对象。
+
+•当函数的参数期望是对象时，被用作参数传入。
+
+•当函数的返回值期望是对象时，被用作返回值传出。
+
+•作为对象原型链的终点。
+
+undefined表示"缺少值"，就是此处应该有一个值，但是还没有定义。典型用法是：
+
+•变量被声明了，但没有赋值时，就等于undefined。
+
+•调用函数时，应该提供的参数没有提供，该参数等于undefined。
+
+•对象没有赋值的属性，该属性的值为undefined。
+
+•函数没有返回值时，默认返回undefined。
+
+  ```
   * 该如何检测它们？
+  ```
+null：表示无值；undefined：表示一个未声明的变量，或已声明但没有赋值的变量，或一个并不存在的对象属性。
+
+==运算符将两者看作相等。如果要区分两者，要使用===或typeof运算符。
+
+以下是不正确的用法：
+
+ var exp = undefined;
+
+ if (exp == undefined) {
+    alert("undefined");
+ }
+
+
+exp为null时，也会得到与undefined相同的结果，虽然null和undefined不一样。注意：要同时判断undefined和null时可使用本法。
+
+typeof返回的是字符串，有六种可能："number"、"string"、"boolean"、"object"、"function"、"undefined"。
+
+以下是正确的用法：
+
+var exp = undefined;
+
+if(typeof(exp) == undefined) {
+    alert("undefined");
+}
+
+JS中如何判断null？
+
+以下是不正确的用法：
+
+ var exp = null;
+ 
+if(exp == null) {
+    alert("is null");
+}
+
+exp为undefined时，也会得到与null相同的结果，虽然null和undefined不一样。注意：要同时判断null和undefined时可使用本法。
+
+var exp=null;
+ 
+if(!exp) {
+    alert("is null");
+ }
+
+如果exp为undefined或者数字零，也会得到与null相同的结果，虽然null和二者不一样。注意：要同时判断null、undefined和数字零时可使用本法。
+
+var exp = null;
+
+if(typeof(exp) == "null") {
+     alert("is null");
+}
+
+为了向下兼容，exp为null时，typeof总返回object。这种方式也不太好。
+
+以下是正确的用法：
+
+var exp = null;
+
+if(!exp&&typeof(exp) != "undefined" && exp != 0) {
+     alert("is null");
+ }
+
+  ```
+
 * 什么是闭包 (closure)，如何使用它，为什么要使用它？
 * 请举出一个匿名函数的典型用例？
 * 你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？
