@@ -828,8 +828,45 @@ function f1(){
 ```
 * 你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？
 * 请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？
+```
+原生对象
+
+ECMA-262 把本地对象（native object）定义为“独立于宿主环境的 ECMAScript 实现提供的对象”。
+
+“本地对象”包含哪些内容：Object、Function、Array、String、Boolean、Number、Date、RegExp、Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError。
+
+由此可以看出，简单来说，本地对象就是 ECMA-262 定义的类（引用类型）。
+
+内置对象
+
+ECMA-262 把内置对象（built-in object）定义为“由 ECMAScript 实现提供的、独立于宿主环境的所有对象，在 ECMAScript 程序开始执行时出现”。这意味着开发者不必明确实例化内置对象，它已被实例化了。
+
+同样是“独立于宿主环境”。根据定义我们似乎很难分清“内置对象”与“本地对象”的区别。而ECMA-262 只定义了两个内置对象，即 Global 和 Math （它们也是本地对象，根据定义，每个内置对象都是本地对象）。如此就可以理解了。内置对象是本地对象的一种。
+
+宿主对象
+
+何为“宿主对象”？主要在这个“宿主”的概念上，ECMAScript中的“宿主”当然就是我们网页的运行环境，即“操作系统”和“浏览器”。
+
+所有非本地对象都是宿主对象（host object），即由 ECMAScript 实现的宿主环境提供的对象。所有的BOM和DOM都是宿主对象。因为其对于不同的“宿主”环境所展示的内容不同。其实说白了就是，ECMAScript官方未定义的对象都属于宿主对象，因为其未定义的对象大多数是自己通过ECMAScript程序创建的对象。
+
+```
 * 请指出以下代码的区别：`function Person(){}`、`var person = Person()`、`var person = new Person()`？
 * `.call` 和 `.apply` 的区别是什么？
+```
+
+call方法: 
+语法：call(thisObj，Object)
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+说明：call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。 如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。 
+apply方法： 
+语法：apply(thisObj，[argArray])
+定义：应用某一对象的一个方法，用另一个对象替换当前对象。 
+说明：如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。
+
+对于apply和call两者在作用上是相同的，但两者在参数上有以下区别：
+对于第一个参数意义都一样，但对第二个参数：apply传入的是一个参数数组，也就是将多个参数组合成为一个数组传入，而call则作为call的参数传入（从第二个参数开始）。如 func.call(func1,var1,var2,var3)对应的apply写法为：func.apply(func1,[var1,var2,var3])同时使用apply的好处是可以直接将当前函数的arguments对象作为apply的第二个参数传入。
+
+```
 * 请解释 `Function.prototype.bind`？
 * 在什么时候你会使用 `document.write()`？
 * 请指出浏览器特性检测，特性推断和浏览器 UA 字符串嗅探的区别？
