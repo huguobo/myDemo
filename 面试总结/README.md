@@ -882,13 +882,30 @@ User-Agent检测：最早的浏览器嗅探即用户代理检测，服务端（�
 
 ```
 * 请尽可能详尽的解释 Ajax 的工作原理。
+```
 [点我点我](http://www.cnblogs.com/mingmingruyuedlut/archive/2011/10/18/2216553.html)
+```
 * 使用 Ajax 都有哪些优劣？
+```
+
+```
 * 请解释 JSONP 的工作原理，以及它为什么不是真正的 Ajax。
+```
+JSONP (JSON with Padding)是一个简单高效的跨域方式，HTML中的script标签可以加载并执行其他域的javascript，于是我们可以通过script标记来动态加载其他域的资源。例如我要从域A的页面pageA加载域B的数据，那么在域B的页面pageB中我以JavaScript的形式声明pageA需要的数据，然后在 pageA中用script标签把pageB加载进来，那么pageB中的脚本就会得以执行。JSONP在此基础上加入了回调函数，pageB加载完之后会执行pageA中定义的函数，所需要的数据会以参数的形式传递给该函数。JSONP易于实现，但是也会存在一些安全隐患，如果第三方的脚本随意地执行，那么它就可以篡改页面内容，截获敏感数据。但是在受信任的双方传递数据，JSONP是非常合适的选择。
+```
+
 * 你使用过 JavaScript 模板系统吗？
   * 如有使用过，请谈谈你都使用过哪些库？
 * 请解释变量声明提升 (hoisting)。
 * 请描述事件冒泡机制 (event bubbling)。
+```
+冒泡型事件：事件按照从最特定的事件目标到最不特定的事件目标(document对象)的顺序触发。
+
+捕获型事件：事件从最不精确的对象(document 对象)开始触发，然后到最精确(也可以在窗口级别捕获事件，不过必须由开发人员特别指定)。
+
+支持W3C标准的浏览器在添加事件时用addEventListener(event,fn,useCapture)方法，基中第3个参数useCapture是一个Boolean值，用来设置事件是在事件捕获时执行，还是事件冒泡时执行。而不兼容W3C的浏览器(IE)用attachEvent()方法，此方法没有相关设置，不过IE的事件模型默认是在事件冒泡时执行的，也就是在useCapture等于false的时候执行，所以把在处理事件时把useCapture设置为false是比较安全，也实现兼容浏览器的效果。
+
+```
 * "attribute" 和 "property" 的区别是什么？
 * 为什么扩展 JavaScript 内置对象不是好的做法？
 * 请指出 document load 和 document DOMContentLoaded 两个事件的区别。
