@@ -907,8 +907,28 @@ JSONP (JSON with Padding)是一个简单高效的跨域方式，HTML中的script
 
 ```
 * "attribute" 和 "property" 的区别是什么？
+```
+1. 定义
+
+Property：属性，所有的HTML元素都由HTMLElement类型表示，HTMLElement类型直接继承自Element并添加了一些属性，添加的这些属性分别对应于每个HTML元素都有下面的这5个标准特性: id,title,lang,dir,className。DOM节点是一个对象，因此，他可以和其他的JavaScript对象一样添加自定义的属性以及方法。property的值可以是任何的数据类型，对大小写敏感，自定义的property不会出现在html代码中，只存在js中。
+
+Attribute：特性，区别于property，attribute只能是字符串，大小写不敏感，出现在innerHTML中，通过类数组attributes可以罗列所有的attribute。
+
+2. 相同之处
+
+标准的 DOM properties 与 attributes 是同步的。公认的（非自定义的）特性会被以属性的形式添加到DOM对象中。如，id，align，style等，这时候操作property或者使用操作特性的DOM方法如getAttribute()都可以操作属性。不过传递给getAttribute()的特性名与实际的特性名相同。因此对于class的特性值获取的时候要传入“class”。
+
+3. 不同之处
+
+1).对于有些标准的特性的操作，getAttribute与点号(.)获取的值存在差异性。如href，src，value，style，onclick等事件处理程序。
+2).href：getAttribute获取的是href的实际值，而点号获取的是完整的url，存在浏览器差异。
+
+```
 * 为什么扩展 JavaScript 内置对象不是好的做法？
 * 请指出 document load 和 document DOMContentLoaded 两个事件的区别。
+```
+页面加载完成有两种事件，一是ready，表示文档结构已经加载完成（不包含图片等非文字媒体文件），二是onload，指示页面包含图片等文件在内的所有元素都加载完成。
+```
 * `==` 和 `===` 有什么不同？
 * 请解释 JavaScript 的同源策略 (same-origin policy)。
 * 如何实现下列代码：
