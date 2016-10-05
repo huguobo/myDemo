@@ -930,10 +930,24 @@ Attribute：特性，区别于property，attribute只能是字符串，大小写
 页面加载完成有两种事件，一是ready，表示文档结构已经加载完成（不包含图片等非文字媒体文件），二是onload，指示页面包含图片等文件在内的所有元素都加载完成。
 ```
 * `==` 和 `===` 有什么不同？
+```
+===称为严格相等，有时也称为恒等运算符，用来检测两个操作数是否严格相等，包括检测类型是否一致。
+==称为相等运算符，它对操作数的相等判断较为宽泛，允许进行类型转换后比较。
+```
 * 请解释 JavaScript 的同源策略 (same-origin policy)。
+```
+在JavaScript中，有一个很重要的安全性限制，被称为“Same-Origin Policy”（同源策略）。
+这一策略对于JavaScript代码能够访问的页面内容做了很重要的限制，即JavaScript只能访问与包含它的文档在同一域下的内容。
+
+所谓同源是指，域名，协议，端口相同。
+```
+
 * 如何实现下列代码：
 ```javascript
 [1,2,3,4,5].duplicator(); // [1,2,3,4,5,1,2,3,4,5]
+```
+```
+Array.prototype.duplicator=function (){ var arr=this.concat(this); return arr;}
 ```
 * 什么是三元表达式 (Ternary expression)？“三元 (Ternary)” 表示什么意思？
 * 什么是 `"use strict";` ? 使用它的好处和坏处分别是什么？
