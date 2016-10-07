@@ -950,8 +950,51 @@ Attribute：特性，区别于property，attribute只能是字符串，大小写
 Array.prototype.duplicator=function (){ var arr=this.concat(this); return arr;}
 ```
 * 什么是三元表达式 (Ternary expression)？“三元 (Ternary)” 表示什么意思？
+```
+a>b?a:b;
+```
 * 什么是 `"use strict";` ? 使用它的好处和坏处分别是什么？
+```
+ECMAscript 5添加了第二种运行模式："严格模式"（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。
+
+设立"严格模式"的目的，主要有以下几个：
+
+1. 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+
+2. 消除代码运行的一些不安全之处，保证代码运行的安全；
+
+3. 提高编译器效率，增加运行速度；
+
+4. 为未来新版本的Javascript做好铺垫。
+
+注：经过测试 IE6,7,8,9 均不支持严格模式。
+
+缺点：
+
+现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有。这时这些本来是严格模式的文件，被 merge 后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节。
+
+```
 * 请实现一个遍历至 `100` 的 for loop 循环，在能被 `3` 整除时输出 **"fizz"**，在能被 `5` 整除时输出 **"buzz"**，在能同时被 `3` 和 `5` 整除时输出 **"fizzbuzz"**。
+```
+for (var i = 1; i <= 100; i++) {
+
+    if (i % 3 === 0) {
+        if (i % 5 === 0) {
+            alert('fizzbuzz' + i);
+            continue;
+        }
+        alert('fizz' + i);
+        continue;
+    } else if (i % 5 === 0) {
+        if (i % 3 === 0) {
+            alert('fizzbuzz' + i);
+            continue;
+        }
+        alert('buzz' + i);
+        continue;
+    }
+}
+```
 * 为何通常会认为保留网站现有的全局作用域 (global scope) 不去改变它，是较好的选择？
 * 为何你会使用 `load` 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？
 * 请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)。
