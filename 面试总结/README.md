@@ -996,6 +996,10 @@ for (var i = 1; i <= 100; i++) {
 }
 ```
 * 为何通常会认为保留网站现有的全局作用域 (global scope) 不去改变它，是较好的选择？
+```
+减少名称冲突
+利于模块化
+```
 * 为何你会使用 `load` 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？
 * 请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)。
 * What is the extent of your experience with Promises and/or their polyfills?
