@@ -1008,6 +1008,12 @@ for (var i = 1; i <= 100; i++) {
 * 请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)。
 * What is the extent of your experience with Promises and/or their polyfills?
 * 使用 Promises 而非回调 (callbacks) 优缺点是什么？
+```
+
+链式调用实现异步，避免嵌套调用，提高代码的可读性和可维护性。
+错误捕获机制更完善，避免回调地狱。
+
+```
 * 使用一种可以编译成 JavaScript 的语言来写 JavaScript 代码有哪些优缺点？
 * 你使用哪些工具和技术来调试 JavaScript 代码？
 * 你会使用怎样的语言结构来遍历对象属性 (object properties) 和数组内容？
